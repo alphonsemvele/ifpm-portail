@@ -1,0 +1,2185 @@
+<!DOCTYPE html>
+<html class="no-js" lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>IFPM - Institut de Formation Professionnelle La Majestueuse de Ndazoa</title>
+    <meta name="author" content="themeholy">
+    <meta name="description" content="L'Institut de Formation Professionnelle La Majestueuse de Ndazoa - Formations aux métiers : couture, maçonnerie, plomberie, coiffure, soudure, et bien plus.">
+    <meta name="keywords" content="IFPM, Ndazoa, formation professionnelle, métiers, couture, maçonnerie, plomberie, coiffure, Cameroun">
+    <meta name="robots" content="INDEX,FOLLOW">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('ifpm.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('ifpm.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('ifpm.png') }}">
+    <meta name="theme-color" content="#bf1f2b">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS du template (gardés pour ne pas casser ce qui existe ailleurs) -->
+    <link rel="stylesheet" href="{{ asset('asset_vitrine/assets/css/app.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset_vitrine/assets/css/fontawesome.min.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
+    <style>
+        /* ============================================================
+           IFPM - CSS ISOLÉ
+           Toutes les classes sont préfixées "ifpm-" pour éviter
+           tout conflit avec app.min.css (qui contient des float, etc.)
+           ============================================================ */
+
+        :root {
+            --ifpm-primary: #bf1f2b;
+            --ifpm-primary-dark: #8b1620;
+            --ifpm-secondary: #f59e0b;
+            --ifpm-secondary-dark: #d97706;
+            --ifpm-dark: #1a1a2e;
+            --ifpm-light: #fef3c7;
+            --ifpm-gray: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif !important;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Reset défensif sur tous les conteneurs IFPM */
+        [class^="ifpm-"],
+        [class*=" ifpm-"] {
+            box-sizing: border-box;
+        }
+
+        [class^="ifpm-"] *,
+        [class*=" ifpm-"] * {
+            float: none !important;
+        }
+
+        /* ============ BOUTONS IFPM ============ */
+        .ifpm-btn {
+            display: inline-block;
+            background: var(--ifpm-primary);
+            color: #fff !important;
+            padding: 12px 28px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            text-decoration: none !important;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .ifpm-btn:hover {
+            background: var(--ifpm-primary-dark);
+            color: #fff !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(191, 31, 43, 0.4);
+        }
+
+        .ifpm-btn-secondary {
+            background: var(--ifpm-secondary);
+        }
+
+        .ifpm-btn-secondary:hover {
+            background: var(--ifpm-secondary-dark);
+        }
+
+        .ifpm-btn-outline {
+            background: transparent;
+            border: 2px solid var(--ifpm-primary);
+            color: var(--ifpm-primary) !important;
+        }
+
+        .ifpm-btn-outline:hover {
+            background: var(--ifpm-primary);
+            color: #fff !important;
+        }
+
+        /* ============ HEADER ============ */
+        .ifpm-header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+
+        .ifpm-header-top {
+            background: var(--ifpm-dark);
+            color: #fff;
+            padding: 8px 0;
+            font-size: 0.85rem;
+        }
+
+        .ifpm-header-top a {
+            color: #fff !important;
+            text-decoration: none !important;
+        }
+
+        .ifpm-header-top ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .ifpm-header-main {
+            padding: 15px 0;
+        }
+
+        .ifpm-logo-block {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .ifpm-logo-block img {
+            height: 65px;
+            width: 65px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .ifpm-logo-block h4 {
+            margin: 0;
+            color: var(--ifpm-primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .ifpm-logo-block small {
+            color: #666;
+            font-size: 0.75rem;
+        }
+
+        .ifpm-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 1.8rem;
+            align-items: center;
+        }
+
+        .ifpm-nav a {
+            color: var(--ifpm-dark) !important;
+            text-decoration: none !important;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .ifpm-nav a:hover {
+            color: var(--ifpm-primary) !important;
+        }
+
+        /* ============ HERO ============ */
+        .ifpm-hero {
+            background: linear-gradient(135deg, rgba(191, 31, 43, 0.88), rgba(26, 26, 46, 0.92)),
+                        url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1920&q=80') center/cover;
+            color: #fff;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .ifpm-hero-subtitle {
+            color: var(--ifpm-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .ifpm-hero-title {
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .ifpm-hero-text {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+        }
+
+        .ifpm-hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ============ TITRES DE SECTION ============ */
+        .ifpm-section {
+            padding: 80px 0;
+        }
+
+        .ifpm-section-gray {
+            background: var(--ifpm-gray);
+        }
+
+        .ifpm-section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .ifpm-section-title .ifpm-subtitle {
+            color: var(--ifpm-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+
+        .ifpm-section-title h2 {
+            color: var(--ifpm-primary);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0 0 0.8rem 0;
+        }
+
+        .ifpm-section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ============ STATISTIQUES ============ */
+        .ifpm-stats {
+            background: linear-gradient(135deg, var(--ifpm-dark), #2d2d44);
+            padding: 60px 0;
+            color: #fff;
+        }
+
+        .ifpm-stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            display: block;
+        }
+
+        .ifpm-stat-item i {
+            font-size: 2.8rem;
+            color: var(--ifpm-secondary);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .ifpm-stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #fff;
+            display: block;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .ifpm-stat-label {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.95rem;
+            display: block;
+        }
+
+        /* ============ "À PROPOS" ============ */
+        .ifpm-about-img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .ifpm-about-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0 0 0;
+        }
+
+        .ifpm-about-list li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ifpm-about-list li i {
+            color: var(--ifpm-primary);
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        /* ============ ATOUTS (Pourquoi choisir) ============ */
+        .ifpm-atout-card {
+            background: #fff !important;
+            padding: 2rem 1.5rem !important;
+            border-radius: 16px !important;
+            text-align: center !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08) !important;
+            transition: all 0.3s ease !important;
+            height: 100% !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            position: relative !important;
+            overflow: hidden !important;
+        }
+
+        .ifpm-atout-card:hover {
+            transform: translateY(-8px) !important;
+            box-shadow: 0 12px 30px rgba(191, 31, 43, 0.18) !important;
+        }
+
+        .ifpm-atout-icon {
+            width: 80px !important;
+            height: 80px !important;
+            background: linear-gradient(135deg, var(--ifpm-primary), var(--ifpm-secondary)) !important;
+            border-radius: 50% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            margin: 0 auto 1.2rem auto !important;
+            color: #fff !important;
+            font-size: 1.8rem !important;
+            float: none !important;
+            flex-shrink: 0 !important;
+        }
+
+        .ifpm-atout-card h4 {
+            color: var(--ifpm-dark) !important;
+            font-weight: 700 !important;
+            margin: 0 0 0.8rem 0 !important;
+            font-size: 1.2rem !important;
+            width: 100% !important;
+            text-align: center !important;
+        }
+
+        .ifpm-atout-card p {
+            color: #666 !important;
+            margin: 0 !important;
+            font-size: 0.95rem !important;
+            line-height: 1.6 !important;
+            width: 100% !important;
+            text-align: center !important;
+        }
+
+        /* ============ ADMISSION ============ */
+        .ifpm-admission {
+            background: linear-gradient(135deg, var(--ifpm-primary), var(--ifpm-dark));
+            color: #fff;
+            padding: 80px 0;
+        }
+
+        .ifpm-admission-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .ifpm-admission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .ifpm-admission-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 2rem 1.5rem;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+            color: #fff;
+        }
+
+        .ifpm-admission-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .ifpm-admission-card h3 {
+            font-size: 1.2rem;
+            margin: 0 0 1rem 0;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ifpm-admission-card i {
+            color: var(--ifpm-secondary);
+            font-size: 1.5rem;
+        }
+
+        .ifpm-admission-card p {
+            color: rgba(255, 255, 255, 0.95);
+            margin: 0.4rem 0;
+            font-size: 0.95rem;
+        }
+
+        .ifpm-admission-card strong {
+            color: #fff;
+            font-size: 1.1rem;
+        }
+
+        /* ============ CARTES MÉTIERS ============ */
+        .ifpm-metier-card {
+            background: #fff !important;
+            border-radius: 16px !important;
+            overflow: hidden !important;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08) !important;
+            transition: all 0.3s ease !important;
+            height: 100% !important;
+            display: flex !important;
+            flex-direction: column !important;
+            position: relative !important;
+        }
+
+        .ifpm-metier-card:hover {
+            transform: translateY(-8px) !important;
+            box-shadow: 0 12px 30px rgba(191, 31, 43, 0.2) !important;
+        }
+
+        .ifpm-metier-img {
+            height: 220px !important;
+            overflow: hidden !important;
+            position: relative !important;
+            width: 100% !important;
+        }
+
+        .ifpm-metier-img img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            transition: transform 0.5s ease !important;
+            display: block !important;
+        }
+
+        .ifpm-metier-card:hover .ifpm-metier-img img {
+            transform: scale(1.08) !important;
+        }
+
+        .ifpm-metier-badge {
+            position: absolute !important;
+            top: 12px !important;
+            right: 12px !important;
+            background: var(--ifpm-primary) !important;
+            color: #fff !important;
+            padding: 5px 12px !important;
+            border-radius: 20px !important;
+            font-size: 0.75rem !important;
+            font-weight: 600 !important;
+            z-index: 2 !important;
+        }
+
+        .ifpm-metier-duree {
+            position: absolute !important;
+            bottom: 12px !important;
+            left: 12px !important;
+            background: rgba(0, 0, 0, 0.75) !important;
+            color: #fff !important;
+            padding: 5px 12px !important;
+            border-radius: 20px !important;
+            font-size: 0.75rem !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 5px !important;
+            z-index: 2 !important;
+        }
+
+        .ifpm-metier-content {
+            padding: 1.5rem !important;
+            flex-grow: 1 !important;
+            display: flex !important;
+            flex-direction: column !important;
+        }
+
+        .ifpm-metier-title {
+            font-size: 1.2rem !important;
+            font-weight: 700 !important;
+            color: var(--ifpm-dark) !important;
+            margin: 0 0 0.6rem 0 !important;
+        }
+
+        .ifpm-metier-text {
+            color: #666 !important;
+            margin: 0 0 1rem 0 !important;
+            font-size: 0.92rem !important;
+            line-height: 1.5 !important;
+        }
+
+        .ifpm-metier-features {
+            list-style: none !important;
+            padding: 0 !important;
+            margin: 0 0 1.2rem 0 !important;
+        }
+
+        .ifpm-metier-features li {
+            padding: 4px 0 !important;
+            color: #555 !important;
+            font-size: 0.88rem !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+        }
+
+        .ifpm-metier-features li i {
+            color: var(--ifpm-primary) !important;
+            font-size: 0.8rem !important;
+        }
+
+        .ifpm-metier-actions {
+            display: flex !important;
+            gap: 8px !important;
+            margin-top: auto !important;
+        }
+
+        .ifpm-metier-actions .ifpm-btn {
+            flex: 1 !important;
+            padding: 9px 12px !important;
+            font-size: 0.85rem !important;
+        }
+
+        /* ============ CATÉGORIES ============ */
+        .ifpm-categorie-titre {
+            text-align: center;
+            margin: 4rem 0 2.5rem 0;
+            position: relative;
+        }
+
+        .ifpm-categorie-titre::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--ifpm-primary), transparent);
+            z-index: 1;
+        }
+
+        .ifpm-categorie-titre h3 {
+            font-size: 1.8rem;
+            color: var(--ifpm-dark);
+            font-weight: 700;
+            display: inline-block;
+            padding: 0 2rem;
+            background: #fff;
+            position: relative;
+            z-index: 2;
+            margin: 0;
+        }
+
+        .ifpm-section-gray .ifpm-categorie-titre h3 {
+            background: var(--ifpm-gray);
+        }
+
+        .ifpm-categorie-titre h3 i {
+            color: var(--ifpm-primary);
+            margin-right: 12px;
+        }
+
+        /* ============ TÉMOIGNAGES ============ */
+        .ifpm-testi {
+            background: linear-gradient(135deg, var(--ifpm-dark), #2d2d44);
+            color: #fff;
+            padding: 80px 0;
+        }
+
+        .ifpm-testi .ifpm-section-title h2 {
+            color: #fff;
+        }
+
+        .ifpm-testi-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ifpm-testi-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 1rem;
+        }
+
+        .ifpm-testi-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .ifpm-testi-info h5 {
+            margin: 0;
+            color: #fff;
+            font-size: 1.05rem;
+        }
+
+        .ifpm-testi-info span {
+            color: var(--ifpm-secondary);
+            font-size: 0.85rem;
+        }
+
+        .ifpm-testi-stars {
+            color: var(--ifpm-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .ifpm-testi-text {
+            color: rgba(255, 255, 255, 0.92);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* ============ CONTACT ============ */
+        .ifpm-contact-info {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .ifpm-contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--ifpm-primary);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+        }
+
+        .ifpm-contact-info h5 {
+            margin: 0 0 5px 0;
+            color: var(--ifpm-dark);
+            font-size: 1.05rem;
+        }
+
+        .ifpm-contact-info p {
+            margin: 0;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .ifpm-contact-form {
+            background: var(--ifpm-gray);
+            padding: 2.5rem;
+            border-radius: 16px;
+        }
+
+        .ifpm-contact-form h3 {
+            color: var(--ifpm-primary);
+            font-weight: 700;
+            margin: 0 0 1.5rem 0;
+        }
+
+        .ifpm-form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .ifpm-form-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        .ifpm-form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: 'Poppins', sans-serif;
+            background: #fff;
+            box-sizing: border-box;
+        }
+
+        .ifpm-form-control:focus {
+            outline: none;
+            border-color: var(--ifpm-primary);
+            box-shadow: 0 0 0 3px rgba(191, 31, 43, 0.1);
+        }
+
+        textarea.ifpm-form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* ============ NEWSLETTER ============ */
+        .ifpm-newsletter {
+            background: linear-gradient(135deg, var(--ifpm-primary), var(--ifpm-primary-dark));
+            padding: 2.5rem;
+            border-radius: 16px;
+            color: #fff;
+            margin-bottom: 3rem;
+        }
+
+        .ifpm-newsletter h3 {
+            color: #fff;
+            margin: 0 0 1rem 0;
+        }
+
+        .ifpm-newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .ifpm-newsletter-form input {
+            flex: 1;
+            min-width: 220px;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+
+        .ifpm-newsletter-social {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+        }
+
+        .ifpm-newsletter-social a {
+            color: #fff !important;
+            font-size: 1.4rem;
+            text-decoration: none !important;
+            transition: transform 0.3s;
+        }
+
+        .ifpm-newsletter-social a:hover {
+            transform: translateY(-3px);
+        }
+
+        /* ============ FOOTER ============ */
+        .ifpm-footer {
+            background: var(--ifpm-dark);
+            color: #fff;
+            padding: 4rem 0 1.5rem;
+        }
+
+        .ifpm-footer h4,
+        .ifpm-footer h5 {
+            color: var(--ifpm-secondary);
+            margin: 0 0 1.2rem 0;
+            font-weight: 600;
+        }
+
+        .ifpm-footer p {
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+        }
+
+        .ifpm-footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .ifpm-footer-links li {
+            margin-bottom: 0.6rem;
+        }
+
+        .ifpm-footer-links a {
+            color: rgba(255, 255, 255, 0.85) !important;
+            text-decoration: none !important;
+            transition: color 0.3s;
+        }
+
+        .ifpm-footer-links a:hover {
+            color: var(--ifpm-secondary) !important;
+        }
+
+        .ifpm-footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .ifpm-footer-social a {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff !important;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none !important;
+            transition: background 0.3s;
+        }
+
+        .ifpm-footer-social a:hover {
+            background: var(--ifpm-primary);
+        }
+
+        .ifpm-footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 1.5rem;
+            margin-top: 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .ifpm-footer-bottom p {
+            margin: 0;
+        }
+
+        .ifpm-footer-bottom-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .ifpm-footer-contact-line {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 0.6rem;
+            font-size: 0.92rem;
+        }
+
+        .ifpm-footer-contact-line i {
+            color: var(--ifpm-secondary);
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
+        /* ============ BOUTONS FLOTTANTS ============ */
+        .ifpm-whatsapp,
+        .ifpm-messenger {
+            position: fixed;
+            right: 20px;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            color: #fff !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 998;
+            transition: transform 0.3s;
+            text-decoration: none !important;
+            font-size: 1.5rem;
+        }
+
+        .ifpm-whatsapp {
+            background: #25D366;
+            bottom: 20px;
+        }
+
+        .ifpm-messenger {
+            background: #0084FF;
+            bottom: 85px;
+        }
+
+        .ifpm-whatsapp:hover,
+        .ifpm-messenger:hover {
+            transform: scale(1.1);
+        }
+
+        /* ============ PRELOADER ============ */
+        .ifpm-preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--ifpm-primary), var(--ifpm-dark), var(--ifpm-secondary));
+            background-size: 400% 400%;
+            animation: ifpmGradient 8s ease infinite;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        @keyframes ifpmGradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .ifpm-preloader-logo {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: #fff;
+            padding: 18px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            animation: ifpmFloat 3s ease-in-out infinite;
+        }
+
+        .ifpm-preloader-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        @keyframes ifpmFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .ifpm-preloader-text {
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .ifpm-preloader-bar {
+            width: 280px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .ifpm-preloader-bar-inner {
+            height: 100%;
+            background: #fff;
+            width: 0%;
+            animation: ifpmLoad 2.5s ease-in-out forwards;
+        }
+
+        @keyframes ifpmLoad {
+            to { width: 100%; }
+        }
+
+        .ifpm-preloader-fade {
+            animation: ifpmFadeOut 0.8s ease-in-out forwards;
+        }
+
+        @keyframes ifpmFadeOut {
+            to { opacity: 0; visibility: hidden; }
+        }
+
+        /* ============ MODAL ============ */
+        .ifpm-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .ifpm-modal.active {
+            display: flex;
+        }
+
+        .ifpm-modal-content {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .ifpm-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #999;
+            line-height: 1;
+        }
+
+        .ifpm-modal-close:hover {
+            color: var(--ifpm-primary);
+        }
+
+        .ifpm-modal h3 {
+            color: var(--ifpm-primary);
+            text-align: center;
+            margin: 0 0 1.5rem 0;
+        }
+
+        .ifpm-modal label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        .ifpm-modal input,
+        .ifpm-modal select {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+        }
+
+        .ifpm-modal input[readonly] {
+            background: #f8f9fa;
+        }
+
+        .ifpm-field-group {
+            margin-bottom: 1rem;
+        }
+
+        /* ============ BLOCS FEATURE (Cité + Transport) ============ */
+        .ifpm-feature-block {
+            padding: 60px 0;
+        }
+
+        .ifpm-feature-block.ifpm-feature-alt {
+            background: var(--ifpm-gray);
+        }
+
+        .ifpm-feature-img-wrap {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .ifpm-feature-img-wrap img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .ifpm-feature-img-wrap::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 80px;
+            height: 80px;
+            border: 3px solid var(--ifpm-secondary);
+            border-radius: 12px;
+            z-index: -1;
+        }
+
+        .ifpm-feature-img-wrap::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--ifpm-primary), var(--ifpm-secondary));
+            border-radius: 12px;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        .ifpm-feature-content h2 {
+            color: var(--ifpm-primary);
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 0 1.2rem 0;
+            line-height: 1.25;
+        }
+
+        .ifpm-feature-content > p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .ifpm-feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2rem 0;
+        }
+
+        .ifpm-feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 8px 0;
+            color: #444;
+        }
+
+        .ifpm-feature-list li i {
+            color: #fff;
+            background: var(--ifpm-primary);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        @media (max-width: 768px) {
+            .ifpm-feature-img-wrap img {
+                height: 280px;
+            }
+            .ifpm-feature-content h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* ============ GALERIE ============ */
+        .ifpm-gallery img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .ifpm-gallery img:hover {
+            transform: scale(1.03);
+        }
+
+        /* ============ ARTICLES (NEWS) ============ */
+        .ifpm-article-meta {
+            color: #888;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .ifpm-article-doc-btn {
+            position: absolute !important;
+            top: 12px !important;
+            left: 12px !important;
+            background: var(--ifpm-primary) !important;
+            color: #fff !important;
+            padding: 5px 12px !important;
+            border-radius: 20px !important;
+            font-size: 0.75rem !important;
+            border: none !important;
+            cursor: pointer !important;
+            z-index: 2 !important;
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 992px) {
+            .ifpm-nav {
+                display: none;
+            }
+            .ifpm-hero-title {
+                font-size: 2.4rem;
+            }
+            .ifpm-section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .ifpm-section {
+                padding: 60px 0;
+            }
+            .ifpm-hero {
+                padding: 70px 0;
+            }
+            .ifpm-hero-title {
+                font-size: 1.9rem;
+            }
+            .ifpm-form-row {
+                grid-template-columns: 1fr;
+            }
+            .ifpm-stat-number {
+                font-size: 2rem;
+            }
+            .ifpm-section-title h2 {
+                font-size: 1.7rem;
+            }
+            .ifpm-categorie-titre h3 {
+                font-size: 1.3rem;
+                padding: 0 1rem;
+            }
+            .ifpm-newsletter-social {
+                justify-content: flex-start;
+                margin-top: 1.5rem;
+            }
+            .ifpm-footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Grille Bootstrap-like simple (sans dépendre de Bootstrap pour ces sections) */
+        .ifpm-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .ifpm-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -12px;
+        }
+
+        .ifpm-col {
+            padding: 0 12px;
+            box-sizing: border-box;
+            margin-bottom: 24px;
+        }
+
+        .ifpm-col-12 { width: 100%; }
+        .ifpm-col-6 { width: 50%; }
+        .ifpm-col-4 { width: 33.333%; }
+        .ifpm-col-3 { width: 25%; }
+
+        @media (max-width: 992px) {
+            .ifpm-col-4 { width: 50%; }
+            .ifpm-col-3 { width: 50%; }
+        }
+
+        @media (max-width: 600px) {
+            .ifpm-col-4,
+            .ifpm-col-3,
+            .ifpm-col-6 { width: 100%; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- PRELOADER -->
+    <div class="ifpm-preloader" id="ifpmPreloader">
+        <div class="ifpm-preloader-logo">
+            <img src="{{ asset('ifpm.png') }}" alt="IFPM">
+        </div>
+        <div class="ifpm-preloader-text">Institut de Formation Professionnelle La Majestueuse</div>
+        <div class="ifpm-preloader-bar"><div class="ifpm-preloader-bar-inner"></div></div>
+        <div class="ifpm-preloader-text" style="font-size: 0.9rem; opacity: 0.85; margin-top: 1rem;">Forgeons votre avenir métier...</div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="ifpm-header">
+        <div class="ifpm-header-top">
+            <div class="ifpm-container">
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@ifpm-ndazoa.com</li>
+                        <li><i class="fas fa-phone"></i> +237 695 045 057 | 655 341 939 | 672 975 394</li>
+                    </ul>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                        <li><a href="/login"><i class="fas fa-user"></i> Connexion</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="ifpm-header-main">
+            <div class="ifpm-container">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                    <div class="ifpm-logo-block">
+                        <img src="{{ asset('ifpm.png') }}" alt="IFPM Ndazoa">
+                        <div>
+                            <h4>IFPM Ndazoa</h4>
+                            <small>Institut de Formation Professionnelle La Majestueuse</small>
+                        </div>
+                    </div>
+                    <ul class="ifpm-nav">
+                        <li><a href="#hero">Accueil</a></li>
+                        <li><a href="#about">À propos</a></li>
+                        <li><a href="#metiers">Nos Métiers</a></li>
+                        <li><a href="#admission">Admission</a></li>
+                        <li><a href="#actualites">Actualités</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- BOUTONS FLOTTANTS -->
+    <a href="https://wa.me/+237691612145?text=Bonjour%2C%20je%20souhaite%20avoir%20plus%20d%27informations%20sur%20les%20formations%20de%20l%27IFPM%20Ndazoa." class="ifpm-whatsapp" target="_blank" title="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61577186635321" class="ifpm-messenger" target="_blank" title="Messenger">
+        <i class="fab fa-facebook-messenger"></i>
+    </a>
+
+    <!-- HERO -->
+    <section class="ifpm-hero" id="hero">
+        <div class="ifpm-container">
+            <span class="ifpm-hero-subtitle" data-aos="fade-up">Bienvenue à l'IFPM Ndazoa</span>
+            <h1 class="ifpm-hero-title" data-aos="fade-up" data-aos-delay="200">
+                Apprenez un Métier,<br>Construisez Votre Avenir
+            </h1>
+            <p class="ifpm-hero-text" data-aos="fade-up" data-aos-delay="300">
+                L'<strong>Institut de Formation Professionnelle La Majestueuse de Ndazoa</strong> forme les artisans et professionnels de demain. Couture, maçonnerie, plomberie, coiffure, soudure, informatique... Maîtrisez un métier concret et entrez sur le marché du travail avec confiance. Formations pratiques, encadrement de qualité, insertion garantie.
+            </p>
+            <div class="ifpm-hero-buttons" data-aos="fade-up" data-aos-delay="400">
+                <a href="#admission" class="ifpm-btn">S'inscrire maintenant <i class="fas fa-arrow-right" style="margin-left: 6px;"></i></a>
+                <a href="#metiers" class="ifpm-btn ifpm-btn-secondary">Découvrir nos métiers <i class="fas fa-tools" style="margin-left: 6px;"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATISTIQUES -->
+    <section class="ifpm-stats">
+        <div class="ifpm-container">
+            <div class="ifpm-row">
+                <div class="ifpm-col ifpm-col-3" data-aos="fade-up">
+                    <div class="ifpm-stat-item">
+                        <i class="fas fa-tools"></i>
+                        <span class="ifpm-stat-number">20+</span>
+                        <span class="ifpm-stat-label">Métiers enseignés</span>
+                    </div>
+                </div>
+                <div class="ifpm-col ifpm-col-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="ifpm-stat-item">
+                        <i class="fas fa-user-graduate"></i>
+                        <span class="ifpm-stat-number">95%</span>
+                        <span class="ifpm-stat-label">Taux d'insertion</span>
+                    </div>
+                </div>
+                <div class="ifpm-col ifpm-col-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="ifpm-stat-item">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <span class="ifpm-stat-number">30+</span>
+                        <span class="ifpm-stat-label">Formateurs experts</span>
+                    </div>
+                </div>
+                <div class="ifpm-col ifpm-col-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="ifpm-stat-item">
+                        <i class="fas fa-award"></i>
+                        <span class="ifpm-stat-number">100%</span>
+                        <span class="ifpm-stat-label">Pratique terrain</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- À PROPOS -->
+    <section class="ifpm-section" id="about">
+        <div class="ifpm-container">
+            <div class="ifpm-row" style="align-items: center;">
+                <div class="ifpm-col ifpm-col-6" data-aos="fade-right">
+                    <img src="{{ asset('WhatsApp Image 2026-05-07 at 13.53.37.jpeg') }}" alt="IFPM Ndazoa" class="ifpm-about-img">
+                </div>
+                <div class="ifpm-col ifpm-col-6" data-aos="fade-left">
+                    <span class="ifpm-hero-subtitle" style="color: var(--ifpm-secondary);">À propos de l'IFPM</span>
+                    <h2 style="color: var(--ifpm-primary); font-size: 2.2rem; margin: 0.5rem 0 1rem 0;">Une institution dédiée aux métiers</h2>
+                 <p style="color: #555; line-height: 1.7;">
+    L'<strong>IFPM de Ndazoa</strong> est un centre d'excellence dédié à la formation aux métiers porteurs. Notre vocation est claire : former des artisans et professionnels qualifiés, capables de répondre aux besoins concrets du marché du travail et de bâtir leur propre avenir.
+</p>
+<p style="color: #555; line-height: 1.7;">
+    Notre approche pédagogique privilégie la <strong>pratique sur le terrain</strong>. Ateliers modernes et bien équipés, formateurs confirmés issus du monde professionnel, stages en entreprise et accompagnement personnalisé à l'insertion : chaque détail est pensé pour transformer votre passion en métier, et votre métier en réussite.
+</p>
+                    <ul class="ifpm-about-list">
+                        <li><i class="fas fa-check-circle"></i> Formations courtes et qualifiantes (6 à 24 mois)</li>
+                        <li><i class="fas fa-check-circle"></i> Ateliers modernes et équipements professionnels</li>
+                        <li><i class="fas fa-check-circle"></i> Stages pratiques en entreprise</li>
+                        <li><i class="fas fa-check-circle"></i> Accompagnement à l'auto-emploi</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- POURQUOI NOUS CHOISIR (CORRIGÉ) -->
+    <section class="ifpm-section ifpm-section-gray">
+        <div class="ifpm-container">
+            <div class="ifpm-section-title">
+                <span class="ifpm-subtitle">Nos atouts</span>
+                <h2>Pourquoi choisir l'IFPM Ndazoa ?</h2>
+            </div>
+            <div class="ifpm-row">
+                <div class="ifpm-col ifpm-col-3" data-aos="fade-up">
+                    <div class="ifpm-atout-card">
+                        <div class="ifpm-atout-icon"><i class="fas fa-hands-helping"></i></div>
+                        <h4>Apprentissage Pratique</h4>
+                        <p>80% de pratique en atelier pour maîtriser le geste professionnel.</p>
+                    </div>
+                </div>
+                <div class="ifpm-col ifpm-col-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="ifpm-atout-card">
+                        <div class="ifpm-atout-icon"><i class="fas fa-certificate"></i></div>
+                        <h4>Diplôme Reconnu</h4>
+                        <p>Certificat de qualification professionnelle reconnu par l'État.</p>
+                    </div>
+                </div>
+                <div class="ifpm-col ifpm-col-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="ifpm-atout-card">
+                        <div class="ifpm-atout-icon"><i class="fas fa-briefcase"></i></div>
+                        <h4>Insertion Pro</h4>
+                        <p>Accompagnement personnalisé vers l'emploi ou l'auto-entrepreneuriat.</p>
+                    </div>
+                </div>
+                <div class="ifpm-col ifpm-col-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="ifpm-atout-card">
+                        <div class="ifpm-atout-icon"><i class="fas fa-home"></i></div>
+                        <h4>Hébergement</h4>
+                        <p>Cité universitaire moderne disponible pour les apprenants.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ADMISSION -->
+    <section class="ifpm-admission" id="admission">
+        <div class="ifpm-container">
+            <div class="ifpm-section-title">
+                <span class="ifpm-subtitle" style="color: var(--ifpm-secondary);">Inscriptions ouvertes</span>
+                <h2 style="color: #fff;">Conditions d'Admission</h2>
+            </div>
+            <div class="ifpm-admission-intro">
+                <p><strong>Chers futurs apprenants,</strong></p>
+                <p>L'IFPM vous accueille dans un cadre moderne avec des ateliers équipés, des formateurs qualifiés et un environnement propice à l'apprentissage des métiers.</p>
+            </div>
+            <div class="ifpm-admission-grid">
+                <div class="ifpm-admission-card">
+                    <h3><i class="fas fa-graduation-cap"></i> Conditions</h3>
+                    <p><strong>Niveau requis :</strong> CEP, BEPC, CAP ou tout autre niveau</p>
+                    <p>Pas de limite d'âge. Motivation et engagement sont les clés.</p>
+                </div>
+                <div class="ifpm-admission-card">
+                    <h3><i class="fas fa-file-invoice-dollar"></i> Inscription</h3>
+                    <p><strong></strong></p>
+                    <p>Frais uniques lors de l'inscription</p>
+                </div>
+                <div class="ifpm-admission-card">
+                    <h3><i class="fas fa-tools"></i> Formation</h3>
+                    <p><strong></strong></p>
+                    <p>Selon le métier choisi. Payable en plusieurs tranches.</p>
+                    <p style="font-size: 0.85rem; opacity: 0.9; margin-top: 0.5rem;">Inclut : kit professionnel, tenue, matériel</p>
+                </div>
+                <div class="ifpm-admission-card">
+                    <h3><i class="fas fa-bed"></i> Hébergement</h3>
+                    <p><strong></strong></p>
+                    <p>Cité universitaire avec chambres équipées</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="{{ route('preinscription.index') }}" class="ifpm-btn ifpm-btn-secondary" style="padding: 14px 36px; font-size: 1rem;">
+                    Faire ma préinscription <i class="fas fa-arrow-right" style="margin-left: 6px;"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- NOS MÉTIERS -->
+    <section class="ifpm-section" id="metiers">
+        <div class="ifpm-container">
+            <div class="ifpm-section-title">
+                <span class="ifpm-subtitle">Nos formations métiers</span>
+                <h2>Choisissez votre métier d'avenir</h2>
+                <p>Plus de 20 métiers regroupés en 5 grands domaines pour répondre aux besoins du marché.</p>
+            </div>
+
+            <!-- BÂTIMENT & CONSTRUCTION -->
+            <div class="ifpm-categorie-titre" data-aos="fade-up">
+                <h3><i class="fas fa-hard-hat"></i>Bâtiment &amp; Construction</h3>
+            </div>
+            <div class="ifpm-row">
+                @php
+                    $batiment = [
+                        ['Maçonnerie', '/asset_vitrine/assets/img/update1/filieres/industrie.jpg', 'Apprenez à construire murs, fondations et structures. Un métier essentiel toujours en forte demande.', '12 mois', 'Très demandé', ['Lecture de plans', 'Coffrage et béton armé', 'Stage en entreprise']],
+                        ['Plomberie & Sanitaire', '/asset_vitrine/assets/img/update1/filieres/industrie.jpg', "Maîtrisez l'installation et la maintenance des réseaux d'eau, sanitaires et appareils.", '12 mois', 'Populaire', ['Réseaux eau / évacuation', 'Installation sanitaire', 'Dépannage']],
+                        ['Carrelage Bâtiment', '/asset_vitrine/assets/img/update1/filieres/industrie.jpg', 'Spécialisez-vous dans la pose de carreaux, faïences et revêtements de sols et murs.', '9 mois', null, ['Préparation supports', 'Techniques de pose', 'Finitions soignées']],
+                        ['Électricité Bâtiment', '/asset_vitrine/assets/img/update1/filieres/industrie.jpg', 'Devenez électricien : installation, mise aux normes et maintenance des installations.', '12 mois', 'Très demandé', ['Schémas électriques', 'Installation domestique', 'Sécurité électrique']],
+                        ['Électricité Industrielle', '/asset_vitrine/assets/img/update1/filieres/industrie.jpg', 'Spécialisez-vous dans les installations électriques des industries et infrastructures.', '18 mois', null, ['Automatismes', 'Maintenance préventive', 'Haute tension']],
+                        ['Soudure', '/asset_vitrine/assets/img/update1/filieres/industrie.jpg', "Apprenez les techniques de soudure : à l'arc, MIG, TIG. Un métier rémunérateur.", '9 mois', null, ["Soudure à l'arc", 'Soudure MIG/TIG', 'Lecture de plans']],
+                        ['Chaudronnerie', '/asset_vitrine/assets/img/update1/filieres/industrie.jpg', "Travail des métaux : façonnage, assemblage et fabrication d'éléments métalliques.", '12 mois', null, ['Traçage et débitage', 'Mise en forme', 'Assemblage']],
+                        ['Staff & Décoration', '/asset_vitrine/assets/img/update1/filieres/industrie.jpg', "Maîtrisez l'art de la décoration intérieure, plafonds, moulures et finitions.", '9 mois', null, ['Plafonds décoratifs', 'Moulures et corniches', 'Peinture déco']],
+                    ];
+                @endphp
+                @foreach($batiment as $i => $m)
+                    <div class="ifpm-col ifpm-col-4" data-aos="fade-up" data-aos-delay="{{ ($i % 3) * 100 }}">
+                        <div class="ifpm-metier-card">
+                            <div class="ifpm-metier-img">
+                                <img src="{{ $m[1] }}" alt="{{ $m[0] }}">
+                                @if($m[4])<span class="ifpm-metier-badge">{{ $m[4] }}</span>@endif
+                                <span class="ifpm-metier-duree"><i class="far fa-clock"></i> {{ $m[3] }}</span>
+                            </div>
+                            <div class="ifpm-metier-content">
+                                <h3 class="ifpm-metier-title">{{ $m[0] }}</h3>
+                                <p class="ifpm-metier-text">{{ $m[2] }}</p>
+                                <ul class="ifpm-metier-features">
+                                    @foreach($m[5] as $f)<li><i class="fas fa-check"></i> {{ $f }}</li>@endforeach
+                                </ul>
+                                <div class="ifpm-metier-actions">
+                                    <a href="#" class="ifpm-btn register-btn" data-filiere="{{ $m[0] }}">S'inscrire</a>
+                                    <a href="#" class="ifpm-btn ifpm-btn-secondary">Brochure</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            <!-- MODE & BEAUTÉ -->
+            <div class="ifpm-categorie-titre" data-aos="fade-up">
+                <h3><i class="fas fa-cut"></i>Mode &amp; Beauté</h3>
+            </div>
+            <div class="ifpm-row">
+                @php
+                    $mode = [
+                        ['Couture Professionnelle', '/asset_vitrine/assets/img/update1/filieres/industrie.jpg', "Devenez couturier(ère) professionnel(le) : confection, retouches, créations sur mesure.", '12 mois', 'Populaire', ['Prise de mesures', 'Coupe et assemblage', 'Création de modèles']],
+                        ['Stylisme & Modélisme', '/asset_vitrine/assets/img/update1/filieres/industrie.jpg', 'Créez vos propres collections : design, patronage et confection haut de gamme.', '18 mois', null, ['Design de mode', 'Patronage', 'Création de collection']],
+                        ['Coiffure Professionnelle', '/asset_vitrine/assets/img/update1/filieres/industrie.jpg', "Maîtrisez l'art de la coiffure : coupes, tresses, soins capillaires et tendances modernes.", '9 mois', 'Très demandé', ['Coupes hommes/femmes', 'Tressage et nattes', 'Soins capillaires']],
+                        ['Esthétique & Cosmétique', '/asset_vitrine/assets/img/update1/filieres/industrie.jpg', 'Spécialisez-vous dans les soins du visage, du corps et la fabrication de cosmétiques.', '12 mois', null, ['Soins du visage', 'Manucure / Pédicure', 'Cosmétiques naturels']],
+                    ];
+                @endphp
+                @foreach($mode as $i => $m)
+                    <div class="ifpm-col ifpm-col-4" data-aos="fade-up" data-aos-delay="{{ ($i % 3) * 100 }}">
+                        <div class="ifpm-metier-card">
+                            <div class="ifpm-metier-img">
+                                <img src="{{ $m[1] }}" alt="{{ $m[0] }}">
+                                @if($m[4])<span class="ifpm-metier-badge">{{ $m[4] }}</span>@endif
+                                <span class="ifpm-metier-duree"><i class="far fa-clock"></i> {{ $m[3] }}</span>
+                            </div>
+                            <div class="ifpm-metier-content">
+                                <h3 class="ifpm-metier-title">{{ $m[0] }}</h3>
+                                <p class="ifpm-metier-text">{{ $m[2] }}</p>
+                                <ul class="ifpm-metier-features">
+                                    @foreach($m[5] as $f)<li><i class="fas fa-check"></i> {{ $f }}</li>@endforeach
+                                </ul>
+                                <div class="ifpm-metier-actions">
+                                    <a href="#" class="ifpm-btn register-btn" data-filiere="{{ $m[0] }}">S'inscrire</a>
+                                    <a href="#" class="ifpm-btn ifpm-btn-secondary">Brochure</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            <!-- INFORMATIQUE -->
+            <div class="ifpm-categorie-titre" data-aos="fade-up">
+                <h3><i class="fas fa-laptop-code"></i>Informatique &amp; Numérique</h3>
+            </div>
+            <div class="ifpm-row">
+                @php
+                    $info = [
+                        ['Maintenance Informatique', '/asset_vitrine/assets/img/update1/filieres/informatique.jpg', "Apprenez à diagnostiquer, réparer et maintenir tout type de matériel informatique.", '9 mois', null, ['Diagnostic de pannes', 'Réparation matérielle', 'Installation logicielle']],
+                        ['Maintenance Réseaux', '/asset_vitrine/assets/img/update1/filieres/informatique.jpg', "Spécialisez-vous dans l'installation et la maintenance des réseaux d'entreprise.", '12 mois', null, ['Câblage réseau', 'Configuration routeurs', 'Sécurité réseau']],
+                        ['Infographie', '/asset_vitrine/assets/img/update1/filieres/informatique.jpg', 'Créez des visuels professionnels : affiches, logos, cartes de visite, supports digitaux.', '9 mois', 'Tendance', ['Photoshop & Illustrator', 'Création de logos', 'Mise en page']],
+                        ['Montage Audiovisuel', '/asset_vitrine/assets/img/update1/filieres/informatique.jpg', 'Maîtrisez le montage vidéo, le son et la post-production pour cinéma et web.', '9 mois', null, ['Premiere Pro / DaVinci', 'Montage son', 'Effets spéciaux']],
+                    ];
+                @endphp
+                @foreach($info as $i => $m)
+                    <div class="ifpm-col ifpm-col-4" data-aos="fade-up" data-aos-delay="{{ ($i % 3) * 100 }}">
+                        <div class="ifpm-metier-card">
+                            <div class="ifpm-metier-img">
+                                <img src="{{ $m[1] }}" alt="{{ $m[0] }}">
+                                @if($m[4])<span class="ifpm-metier-badge">{{ $m[4] }}</span>@endif
+                                <span class="ifpm-metier-duree"><i class="far fa-clock"></i> {{ $m[3] }}</span>
+                            </div>
+                            <div class="ifpm-metier-content">
+                                <h3 class="ifpm-metier-title">{{ $m[0] }}</h3>
+                                <p class="ifpm-metier-text">{{ $m[2] }}</p>
+                                <ul class="ifpm-metier-features">
+                                    @foreach($m[5] as $f)<li><i class="fas fa-check"></i> {{ $f }}</li>@endforeach
+                                </ul>
+                                <div class="ifpm-metier-actions">
+                                    <a href="#" class="ifpm-btn register-btn" data-filiere="{{ $m[0] }}">S'inscrire</a>
+                                    <a href="#" class="ifpm-btn ifpm-btn-secondary">Brochure</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            <!-- SANTÉ & SERVICES -->
+            <div class="ifpm-categorie-titre" data-aos="fade-up">
+                <h3><i class="fas fa-heart"></i>Santé &amp; Services à la Personne</h3>
+            </div>
+            <div class="ifpm-row">
+                @php
+                    $sante = [
+                        ['Auxiliaire de Vie', '/asset_vitrine/assets/img/update1/filieres/sante-1.jpg', "Accompagnez les personnes âgées ou en perte d'autonomie dans leur quotidien.", '9 mois', 'En forte demande', ["Soins d'hygiène", 'Aide aux repas', 'Soutien moral']],
+                        ['Auxiliaire de Puériculture', '/asset_vitrine/assets/img/update1/filieres/sante-2.jpg', 'Prenez soin des nouveau-nés et jeunes enfants en crèche, hôpital ou maternité.', '12 mois', null, ['Soins nourrissons', "Éveil de l'enfant", 'Hygiène et sécurité']],
+                        ['Aide Chimiste Biologiste', 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=80', 'Assistez les techniciens en laboratoire pour les analyses chimiques et biologiques.', '12 mois', null, ['Manipulation laboratoire', 'Préparation échantillons', 'Sécurité chimique']],
+                    ];
+                @endphp
+                @foreach($sante as $i => $m)
+                    <div class="ifpm-col ifpm-col-4" data-aos="fade-up" data-aos-delay="{{ ($i % 3) * 100 }}">
+                        <div class="ifpm-metier-card">
+                            <div class="ifpm-metier-img">
+                                <img src="{{ $m[1] }}" alt="{{ $m[0] }}">
+                                @if($m[4])<span class="ifpm-metier-badge">{{ $m[4] }}</span>@endif
+                                <span class="ifpm-metier-duree"><i class="far fa-clock"></i> {{ $m[3] }}</span>
+                            </div>
+                            <div class="ifpm-metier-content">
+                                <h3 class="ifpm-metier-title">{{ $m[0] }}</h3>
+                                <p class="ifpm-metier-text">{{ $m[2] }}</p>
+                                <ul class="ifpm-metier-features">
+                                    @foreach($m[5] as $f)<li><i class="fas fa-check"></i> {{ $f }}</li>@endforeach
+                                </ul>
+                                <div class="ifpm-metier-actions">
+                                    <a href="#" class="ifpm-btn register-btn" data-filiere="{{ $m[0] }}">S'inscrire</a>
+                                    <a href="#" class="ifpm-btn ifpm-btn-secondary">Brochure</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            <!-- LANGUES -->
+            <div class="ifpm-categorie-titre" data-aos="fade-up">
+                <h3><i class="fas fa-language"></i>Langues</h3>
+            </div>
+            <div class="ifpm-row" style="justify-content: center;">
+                <div class="ifpm-col ifpm-col-4" data-aos="fade-up">
+                    <div class="ifpm-metier-card">
+                        <div class="ifpm-metier-img">
+                            <img src="/asset_vitrine/assets/img/update1/filieres/bouquin.jpg" alt="Langues">
+                            <span class="ifpm-metier-duree"><i class="far fa-clock"></i> 6 mois</span>
+                        </div>
+                        <div class="ifpm-metier-content">
+                            <h3 class="ifpm-metier-title">Langues : Français, Anglais, Allemand</h3>
+                            <p class="ifpm-metier-text">Améliorez vos compétences linguistiques pour booster votre carrière ou émigrer.</p>
+                            <ul class="ifpm-metier-features">
+                                <li><i class="fas fa-check"></i> Cours intensifs</li>
+                                <li><i class="fas fa-check"></i> Préparation TOEFL/DELF</li>
+                                <li><i class="fas fa-check"></i> Pratique orale</li>
+                            </ul>
+                            <div class="ifpm-metier-actions">
+                                <a href="#" class="ifpm-btn register-btn" data-filiere="Langues">S'inscrire</a>
+                                <a href="#" class="ifpm-btn ifpm-btn-secondary">Brochure</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL INSCRIPTION -->
+    <div class="ifpm-modal" id="ifpmRegisterModal">
+        <div class="ifpm-modal-content">
+            <button class="ifpm-modal-close" type="button">&times;</button>
+            <h3><i class="fas fa-user-plus" style="margin-right: 8px;"></i>Préinscription IFPM</h3>
+            <p style="text-align: center; color: #666; margin: 0 0 1.5rem 0;">Remplissez ce formulaire et nous vous recontactons rapidement.</p>
+            <form id="ifpmRegisterForm">
+                <div class="ifpm-field-group">
+                    <label for="ifpm-filiere">Métier choisi</label>
+                    <input type="text" id="ifpm-filiere" name="filiere" readonly>
+                </div>
+                <div class="ifpm-form-row">
+                    <div>
+                        <label for="ifpm-nom">Nom *</label>
+                        <input type="text" id="ifpm-nom" name="nom" placeholder="Votre nom" required>
+                    </div>
+                    <div>
+                        <label for="ifpm-prenom">Prénom *</label>
+                        <input type="text" id="ifpm-prenom" name="prenom" placeholder="Votre prénom" required>
+                    </div>
+                </div>
+                <div class="ifpm-form-row">
+                    <div>
+                        <label for="ifpm-contact">Téléphone *</label>
+                        <input type="tel" id="ifpm-contact" name="contact" placeholder="+237 ..." required>
+                    </div>
+                    <div>
+                        <label for="ifpm-email">Email *</label>
+                        <input type="email" id="ifpm-email" name="email" placeholder="exemple@mail.com" required>
+                    </div>
+                </div>
+                <div class="ifpm-form-row">
+                    <div>
+                        <label for="ifpm-ville">Ville</label>
+                        <input type="text" id="ifpm-ville" name="ville" placeholder="Votre ville">
+                    </div>
+                    <div>
+                        <label for="ifpm-niveau">Niveau d'études</label>
+                        <select id="ifpm-niveau" name="niveau" required>
+                            <option value="" disabled selected>Choisir</option>
+                            <option value="aucun">Aucun diplôme</option>
+                            <option value="cep">CEP</option>
+                            <option value="bepc">BEPC</option>
+                            <option value="cap">CAP / Probatoire</option>
+                            <option value="bac">BAC</option>
+                            <option value="autre">Autre</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="ifpm-btn" style="width: 100%; padding: 14px; margin-top: 1rem;">
+                    Envoyer ma préinscription <i class="fas fa-paper-plane" style="margin-left: 6px;"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- TÉMOIGNAGES -->
+    <section class="ifpm-testi">
+        <div class="ifpm-container">
+            <div class="ifpm-section-title">
+                <span class="ifpm-subtitle">Ils témoignent</span>
+                <h2>Nos apprenants parlent de nous</h2>
+            </div>
+            <div class="ifpm-row">
+                <div class="ifpm-col ifpm-col-4" data-aos="fade-up">
+                    <div class="ifpm-testi-card">
+                        <div class="ifpm-testi-header">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&q=80" class="ifpm-testi-avatar" alt="Emmanuel">
+                            <div class="ifpm-testi-info">
+                                <h5>Emmanuel Ndongo</h5>
+                                <span>Maçonnerie</span>
+                            </div>
+                        </div>
+                        <div class="ifpm-testi-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="ifpm-testi-text">Grâce à l'IFPM, j'ai monté ma propre entreprise de construction 6 mois après ma formation. La pratique en atelier fait toute la différence.</p>
+                    </div>
+                </div>
+                <div class="ifpm-col ifpm-col-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="ifpm-testi-card">
+                        <div class="ifpm-testi-header">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=120&q=80" class="ifpm-testi-avatar" alt="Clara">
+                            <div class="ifpm-testi-info">
+                                <h5>Clara Essomba</h5>
+                                <span>Couture &amp; Stylisme</span>
+                            </div>
+                        </div>
+                        <div class="ifpm-testi-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="ifpm-testi-text">J'ai lancé ma marque de vêtements grâce aux compétences acquises ici. Les formateurs sont passionnés et l'atelier est très bien équipé.</p>
+                    </div>
+                </div>
+                <div class="ifpm-col ifpm-col-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="ifpm-testi-card">
+                        <div class="ifpm-testi-header">
+                            <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=120&q=80" class="ifpm-testi-avatar" alt="Jean">
+                            <div class="ifpm-testi-info">
+                                <h5>Jean-Pierre Mbarga</h5>
+                                <span>Électricité Bâtiment</span>
+                            </div>
+                        </div>
+                        <div class="ifpm-testi-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="ifpm-testi-text">Embauché dès la fin de mon stage ! L'IFPM m'a donné toutes les compétences techniques nécessaires pour réussir.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERIE -->
+    <section class="ifpm-section">
+        <div class="ifpm-container">
+            <div class="ifpm-section-title">
+                <span class="ifpm-subtitle">Vie au campus</span>
+                <h2>Découvrez nos ateliers</h2>
+            </div>
+            <div class="ifpm-row ifpm-gallery">
+                <div class="ifpm-col ifpm-col-4" data-aos="zoom-in"><img src="{{ asset('WhatsApp Image 2026-05-07 at 13.53.33 (1).jpeg') }}" alt="Atelier"></div>
+                <div class="ifpm-col ifpm-col-4" data-aos="zoom-in" data-aos-delay="100"><img src="{{ asset('WhatsApp Image 2026-05-07 at 13.54.06.jpeg') }}" alt="Atelier"></div>
+                <div class="ifpm-col ifpm-col-4" data-aos="zoom-in" data-aos-delay="200"><img src="{{ asset('WhatsApp Image 2026-05-07 at 13.54.05.jpeg') }}" alt="Salle"></div>
+                <div class="ifpm-col ifpm-col-4" data-aos="zoom-in" data-aos-delay="300"><img src="{{asset('WhatsApp Image 2026-05-07 at 13.53.33 (2).jpeg')}}" alt="Pratique"></div>
+                <div class="ifpm-col ifpm-col-4" data-aos="zoom-in" data-aos-delay="400"><img src="{{asset('WhatsApp Image 2026-05-07 at 13.54.06 (2).jpeg')}}" alt="Étudiants"></div>
+                <div class="ifpm-col ifpm-col-4" data-aos="zoom-in" data-aos-delay="500"><img src="{{asset('WhatsApp Image 2026-05-07 at 13.53.32 (2).jpeg')}}" alt="Campus"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CITÉ UNIVERSITAIRE / HÉBERGEMENT -->
+    <section class="ifpm-feature-block">
+        <div class="ifpm-container">
+            <div class="ifpm-row" style="align-items: center;">
+                <div class="ifpm-col ifpm-col-6" data-aos="fade-right">
+                    <div class="ifpm-feature-img-wrap">
+                        <img src="{{ asset('asset_vitrine/assets/img/normal/video1.png') }}  " alt="Cité universitaire IFPM Ndazoa">
+                    </div>
+                </div>
+                <div class="ifpm-col ifpm-col-6" data-aos="fade-left">
+                    <div class="ifpm-feature-content" style="padding-left: 20px;">
+                        <span class="ifpm-subtitle" style="color: var(--ifpm-secondary); display: block; margin-bottom: 0.5rem;">Cité universitaire</span>
+                        <h2>Un cadre propice dédié aux apprenants et formateurs</h2>
+                        <p>Nous offrons un environnement stimulant et favorable à l'apprentissage. Notre cité universitaire moderne intègre harmonieusement confort, sécurité et ressources pédagogiques pour garantir votre réussite.</p>
+                        <ul class="ifpm-feature-list">
+                            <li><i class="fas fa-check"></i> Chambres équipées avec literie complète</li>
+                            <li><i class="fas fa-check"></i> Sécurité 24h/24 et environnement sain</li>
+                            <li><i class="fas fa-check"></i> Espaces de révision et de travail en groupe</li>
+                            <li><i class="fas fa-check"></i> Cadre convivial pour un soutien académique et social</li>
+                            <li><i class="fas fa-check"></i> Restauration sur place et services de proximité</li>
+                        </ul>
+                        <a class="ifpm-btn" href="#admission">Réserver ma chambre <i class="fas fa-arrow-right" style="margin-left: 6px;"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRANSPORT -->
+    <section class="ifpm-feature-block ifpm-feature-alt">
+        <div class="ifpm-container">
+            <div class="ifpm-row" style="align-items: center;">
+                <div class="ifpm-col ifpm-col-6" data-aos="fade-right">
+                    <div class="ifpm-feature-content" style="padding-right: 20px;">
+                        <span class="ifpm-subtitle" style="color: var(--ifpm-secondary); display: block; margin-bottom: 0.5rem;">Transport dédié</span>
+                        <h2>Des bus modernes pour faciliter vos déplacements</h2>
+                        <p>L'IFPM met à disposition des bus et véhicules modernes pour les déplacements quotidiens des apprenants. Notre service de transport est conçu pour offrir commodité, sécurité et ponctualité, sans aucun stress.</p>
+                        <ul class="ifpm-feature-list">
+                            <li><i class="fas fa-check"></i> Véhicules confortables et sécurisés</li>
+                            <li><i class="fas fa-check"></i> Horaires adaptés aux besoins académiques</li>
+                            <li><i class="fas fa-check"></i> Service fiable pour une expérience sans stress</li>
+                            <li><i class="fas fa-check"></i> Couverture des trajets vers les campus et lieux de stage</li>
+                            <li><i class="fas fa-check"></i> Chauffeurs professionnels et expérimentés</li>
+                        </ul>
+                        <a class="ifpm-btn" href="#contact">En savoir plus <i class="fas fa-arrow-right" style="margin-left: 6px;"></i></a>
+                    </div>
+                </div>
+                <div class="ifpm-col ifpm-col-6" data-aos="fade-left">
+                    <div class="ifpm-feature-img-wrap">
+                        <img src="{{ asset('WhatsApp Image 2026-05-07 at 13.53.33.jpeg') }}" alt="Transport scolaire IFPM Ndazoa">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACTUALITÉS -->
+    <section class="ifpm-section ifpm-section-gray" id="actualites">
+        <div class="ifpm-container">
+            <div class="ifpm-section-title">
+                <span class="ifpm-subtitle">Nos articles</span>
+                <h2>Actualités IFPM</h2>
+            </div>
+            <div class="ifpm-row">
+                @forelse($articles as $article)
+                    <div class="ifpm-col ifpm-col-4" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
+                        <div class="ifpm-metier-card">
+                            <div class="ifpm-metier-img">
+                                @if($article->images->count() > 0)
+                                    @php $imageCount = $article->images->count(); @endphp
+                                    @if($imageCount == 1)
+                                        <img src="{{ $article->images->first()->path }}" alt="{{ $article->title }}">
+                                    @elseif($imageCount == 2)
+                                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px; height: 220px;">
+                                            @foreach($article->images->take(2) as $image)
+                                                <img src="{{ $image->path }}" alt="" style="width:100%;height:100%;object-fit:cover;">
+                                            @endforeach
+                                        </div>
+                                    @else
+                                        <div style="display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 2px; height: 220px;">
+                                            <div style="grid-row: span 2;">
+                                                <img src="{{ $article->images->first()->path }}" alt="" style="width:100%;height:100%;object-fit:cover;">
+                                            </div>
+                                            @foreach($article->images->skip(1)->take(2) as $image)
+                                                @if($loop->last && $imageCount > 3)
+                                                    <div style="position: relative;">
+                                                        <img src="{{ $image->path }}" alt="" style="width:100%;height:100%;object-fit:cover;">
+                                                        <div style="position:absolute;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;">+{{ $imageCount - 3 }}</div>
+                                                    </div>
+                                                @else
+                                                    <img src="{{ $image->path }}" alt="" style="width:100%;height:100%;object-fit:cover;">
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                    @endif
+                                    <span class="ifpm-metier-badge" style="background: rgba(0,0,0,0.7);"><i class="fas fa-images"></i> {{ $imageCount }}</span>
+                                @else
+                                    <img src="https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=600&q=80" alt="Article">
+                                @endif
+
+                                @if($article->documents->count() > 0)
+                                    <button onclick="ifpmDownloadDocs{{ $article->id }}(event)" class="ifpm-article-doc-btn">
+                                        <i class="fas fa-download"></i> {{ $article->documents->count() }} doc(s)
+                                    </button>
+                                    <script>
+                                        function ifpmDownloadDocs{{ $article->id }}(event) {
+                                            event.preventDefault(); event.stopPropagation();
+                                            const docs = @json($article->documents->pluck('path'));
+                                            docs.forEach((url, idx) => setTimeout(() => {
+                                                const a = document.createElement('a');
+                                                a.href = url; a.download = url.split('/').pop(); a.target = '_blank';
+                                                document.body.appendChild(a); a.click(); document.body.removeChild(a);
+                                            }, idx * 700));
+                                        }
+                                    </script>
+                                @endif
+                            </div>
+                            <div class="ifpm-metier-content">
+                                <div class="ifpm-article-meta">
+                                    <i class="far fa-clock"></i> {{ \Carbon\Carbon::parse($article->published_at)->format('d M Y') }}
+                                </div>
+                                <h3 class="ifpm-metier-title">{{ Str::limit($article->title, 60) }}</h3>
+                                <p class="ifpm-metier-text">{{ Str::limit($article->content, 120) }}</p>
+                                <div class="ifpm-metier-actions" style="margin-top: auto;">
+                                    <a href="{{ route('articles.show', $article->id) }}" class="ifpm-btn ifpm-btn-secondary" style="flex: 1;">
+                                        Lire l'article <i class="fas fa-arrow-right" style="margin-left: 4px;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <div class="ifpm-col ifpm-col-12" style="text-align: center;">
+                        <p style="color: #888;">Aucun article disponible pour le moment. Revenez bientôt !</p>
+                    </div>
+                @endforelse
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="ifpm-section" id="contact">
+        <div class="ifpm-container">
+            <div class="ifpm-row">
+                <div class="ifpm-col ifpm-col-6">
+                    <span class="ifpm-subtitle" style="display: block; margin-bottom: 0.5rem;">Contact</span>
+                    <h2 style="color: var(--ifpm-primary); font-size: 2rem; margin: 0 0 1rem 0;">Une question ? Contactez-nous</h2>
+                    <p style="color: #555; margin-bottom: 2rem;">L'équipe IFPM est à votre écoute pour vous renseigner sur nos formations.</p>
+
+                    <div class="ifpm-contact-info">
+                        <div class="ifpm-contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <h5>Notre adresse</h5>
+                            <p>Ndazoa, 7 km de Mbankomo, route Yaoundé-Douala (panneau IFPM à droite, près station Green Oil).</p>
+                        </div>
+                    </div>
+                    <div class="ifpm-contact-info">
+                        <div class="ifpm-contact-icon"><i class="fas fa-phone"></i></div>
+                        <div>
+                            <h5>Téléphone</h5>
+                            <p>+237 695 045 057 <br> 655 341 939 <br> 672 975 394</p>
+                        </div>
+                    </div>
+                    <div class="ifpm-contact-info">
+                        <div class="ifpm-contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <h5>Email</h5>
+                            <p>info@ifpm-ndazoa.com</p>
+                        </div>
+                    </div>
+                    <div class="ifpm-contact-info">
+                        <div class="ifpm-contact-icon"><i class="fas fa-clock"></i></div>
+                        <div>
+                            <h5>Horaires</h5>
+                            <p>Lundi - Vendredi : 08h - 17h<br>Samedi : 09h - 13h</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="ifpm-col ifpm-col-6">
+                    <div class="ifpm-contact-form">
+                        <h3>Envoyez-nous un message</h3>
+                        <form>
+                            <div class="ifpm-form-row">
+                                <input type="text" class="ifpm-form-control" placeholder="Votre nom *">
+                                <input type="email" class="ifpm-form-control" placeholder="Email *">
+                            </div>
+                            <div class="ifpm-form-row">
+                                <select class="ifpm-form-control">
+                                    <option>Sujet de votre demande</option>
+                                    <option>Inscription à une formation</option>
+                                    <option>Demande d'information</option>
+                                    <option>Hébergement</option>
+                                    <option>Autre</option>
+                                </select>
+                                <input type="tel" class="ifpm-form-control" placeholder="Téléphone *">
+                            </div>
+                            <div class="ifpm-form-row full">
+                                <textarea class="ifpm-form-control" rows="5" placeholder="Votre message *"></textarea>
+                            </div>
+                            <button type="submit" class="ifpm-btn" style="padding: 13px 32px;">
+                                Envoyer le message <i class="fas fa-paper-plane" style="margin-left: 6px;"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <div class="ifpm-container">
+        <div class="ifpm-newsletter">
+            <div class="ifpm-row" style="align-items: center;">
+                <div class="ifpm-col ifpm-col-6" style="margin-bottom: 0;">
+                    <h3>Restez informé des actualités IFPM</h3>
+                    <form class="ifpm-newsletter-form">
+                        <input type="email" placeholder="Votre email">
+                        <button type="submit" class="ifpm-btn ifpm-btn-secondary">S'abonner</button>
+                    </form>
+                </div>
+                <div class="ifpm-col ifpm-col-6" style="margin-bottom: 0;">
+                    <h3 style="text-align: right;">Suivez-nous</h3>
+                    <div class="ifpm-newsletter-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="ifpm-footer">
+        <div class="ifpm-container">
+            <div class="ifpm-row">
+                <div class="ifpm-col ifpm-col-4">
+                    <div class="ifpm-logo-block" style="margin-bottom: 1rem;">
+                        <img src="{{ asset('ifpm.png') }}" alt="IFPM" style="border: 2px solid var(--ifpm-secondary);">
+                        <h4 style="color: #fff; margin: 0;">IFPM Ndazoa</h4>
+                    </div>
+                    <p>L'Institut de Formation Professionnelle La Majestueuse de Ndazoa forme les artisans et professionnels de demain.</p>
+                    <div class="ifpm-footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="ifpm-col ifpm-col-3">
+                    <h5>Liens rapides</h5>
+                    <ul class="ifpm-footer-links">
+                        <li><a href="#about">À propos</a></li>
+                        <li><a href="#metiers">Nos métiers</a></li>
+                        <li><a href="#admission">Admission</a></li>
+                        <li><a href="#actualites">Actualités</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="ifpm-col ifpm-col-3">
+                    <h5>Métiers populaires</h5>
+                    <ul class="ifpm-footer-links">
+                        <li><a href="#metiers">Maçonnerie</a></li>
+                        <li><a href="#metiers">Couture</a></li>
+                        <li><a href="#metiers">Plomberie</a></li>
+                        <li><a href="#metiers">Coiffure</a></li>
+                        <li><a href="#metiers">Soudure</a></li>
+                        <li><a href="#metiers">Infographie</a></li>
+                    </ul>
+                </div>
+
+                <div class="ifpm-col ifpm-col-12" style="width: 100%;">
+                    <div class="ifpm-row">
+                        <div class="ifpm-col ifpm-col-12">
+                            <h5>Contact</h5>
+                            <div class="ifpm-footer-contact-line">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Ndazoa, 7 km de Mbankomo, route Yaoundé-Douala</span>
+                            </div>
+                            <div class="ifpm-footer-contact-line">
+                                <i class="fas fa-phone"></i>
+                                <span>+237 691 612 145 | +237 695 830 031</span>
+                            </div>
+                            <div class="ifpm-footer-contact-line">
+                                <i class="fas fa-envelope"></i>
+                                <span>info@ifpm-ndazoa.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ifpm-footer-bottom">
+                <p>© 2025 <strong>IFPM Ndazoa</strong>. Tous droits réservés.</p>
+                <ul class="ifpm-footer-bottom-links">
+                    <li><a href="#" style="color: rgba(255,255,255,0.85); text-decoration: none;">Politique de confidentialité</a></li>
+                    <li><a href="#" style="color: rgba(255,255,255,0.85); text-decoration: none;">Conditions d'utilisation</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="{{ asset('asset_vitrine/assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        // Modal d'inscription
+        document.querySelectorAll('.register-btn').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.getElementById('ifpm-filiere').value = this.getAttribute('data-filiere');
+                document.getElementById('ifpmRegisterModal').classList.add('active');
+            });
+        });
+
+        document.querySelector('.ifpm-modal-close').addEventListener('click', function () {
+            document.getElementById('ifpmRegisterModal').classList.remove('active');
+        });
+
+        document.getElementById('ifpmRegisterModal').addEventListener('click', function (event) {
+            if (event.target === this) this.classList.remove('active');
+        });
+
+        // Preloader
+        window.addEventListener('load', function () {
+            const preloader = document.getElementById('ifpmPreloader');
+            preloader.classList.add('ifpm-preloader-fade');
+            setTimeout(() => { preloader.style.display = 'none'; }, 800);
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
