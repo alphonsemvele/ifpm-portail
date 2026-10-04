@@ -183,7 +183,18 @@ return new class extends Migration
             DB::statement('ALTER TABLE `examens` MODIFY `date` datetime NULL');
         }
 
-        DB::statement("ALTER TABLE `users` MODIFY `role` enum('student','personnel','filiere','specialite','admin','enseignant','concierge','bibliothecaire','coordonnateur') NOT NULL DEFAULT 'student'");
+        /*
+         * Sur une base reprise d'IUM la colonne existe deja et l'on se
+         * contente d'en elargir les valeurs ; sur une base neuve elle n'a
+         * jamais ete creee — aucune migration ne s'en charge. Il faut donc
+         * savoir l'ajouter, sans quoi la migration echoue sur une
+         * installation partie de rien.
+         */
+        $roles = "enum('student','personnel','filiere','specialite','admin','enseignant','concierge','bibliothecaire','coordonnateur') NOT NULL DEFAULT 'student'";
+
+        DB::statement(Schema::hasColumn('users', 'role')
+            ? "ALTER TABLE `users` MODIFY `role` $roles"
+            : "ALTER TABLE `users` ADD `role` $roles");
         DB::statement("ALTER TABLE `cycles` MODIFY `institution` enum('ISM','IFPM','GSBM') NOT NULL");
     }
 
