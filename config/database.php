@@ -56,7 +56,14 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
             'strict' => true,
-            'engine' => null,
+            /*
+             * Sans moteur impose, le serveur retombe sur MyISAM : les cles y
+             * sont limitees a 1000 octets, et une cle primaire varchar(255)
+             * en utf8mb4 en pese 1020. InnoDB en format DYNAMIC accepte
+             * 3072 octets — et donne les transactions et les cles etrangeres
+             * que MyISAM n'a jamais eues.
+             */
+            'engine' => 'InnoDB ROW_FORMAT=DYNAMIC',
             'options' => extension_loaded('pdo_mysql') ? array_filter([
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
