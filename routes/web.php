@@ -37,7 +37,9 @@ Route::post('/bulletins/batch-pdf', [BulletinController::class, 'batch'])
 
  Discover::controllers()->in(app_path('Http/Controllers'));
 
-Route::post('/preinscription', ['App\Http\Controllers\Pages\PreinscriptionController', 'logout'])->name('preinscription.index');
+// Cette route deconnecte le candidat : elle ne peut pas porter le nom de la
+// page d'inscription, que les liens des vitrines utilisent deja.
+Route::post('/preinscription', ['App\Http\Controllers\Pages\PreinscriptionController', 'logout'])->name('preinscription.logout');
 
 
 /*

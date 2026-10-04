@@ -16,7 +16,7 @@ use App\Models\Departement;
 class test extends Controller
 {
 
-    #[Route(uri:'test', name : 'preinscription.index')]
+    #[Route(uri:'test', name : 'test.index')]
     public function index()
     {
         $filieres = Filiere::where('status','success')->get();
