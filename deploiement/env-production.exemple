@@ -6,9 +6,7 @@ APP_NAME="IFPM"
 APP_ENV=production
 APP_KEY=
 APP_DEBUG=false
-# Tant que le certificat n'est pas emis, le site repond en clair : laissez
-# http:// ici, et passez a https:// le jour ou SSL/TLS est actif.
-APP_URL=http://ifpm.lamajestueuse.com
+APP_URL=https://ifpm.lamajestueuse.com
 
 APP_LOCALE=fr
 APP_FALLBACK_LOCALE=fr
@@ -29,9 +27,8 @@ DB_PASSWORD=
 SESSION_DRIVER=database
 SESSION_LIFETIME=120
 SESSION_ENCRYPT=false
-# Un cookie « securise » n'est pas renvoye sur une connexion en clair : sur
-# http, personne ne resterait connecte. A passer a true avec le certificat.
-SESSION_SECURE_COOKIE=false
+# Le site est en HTTPS : le cookie de session ne doit pas circuler en clair.
+SESSION_SECURE_COOKIE=true
 
 QUEUE_CONNECTION=database
 CACHE_STORE=database
