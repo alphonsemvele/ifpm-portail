@@ -42,3 +42,26 @@ MAIL_PASSWORD=
 MAIL_ENCRYPTION=tls
 MAIL_FROM_ADDRESS="info@lamajestueuse.com"
 MAIL_FROM_NAME="IFPM"
+
+# Identite de l'etablissement. Le code est commun a IUM, IFPM et GSBM :
+# sans ces valeurs, le site s'affiche sous celle d'IUM, qui est la valeur
+# par defaut du code.
+ETABLISSEMENT_SIGLE="IFPM NDAZOA"
+ETABLISSEMENT_NOM="Institut de Formation Professionnelle La Majestueuse"
+ETABLISSEMENT_SLOGAN="Forgeons votre avenir métier."
+ETABLISSEMENT_ADRESSE="Ndazoa, 7 km de Mbankomo, route Yaoundé-Douala (près de la station Green Oil)"
+ETABLISSEMENT_TELEPHONE="+237 695 045 057 / 655 341 939 / 672 975 394"
+ETABLISSEMENT_EMAIL=info@ifpm-ndazoa.com
+ETABLISSEMENT_DOMAINE=ifpm-ndazoa.com
+ETABLISSEMENT_LOGO=ifpm.png
+LIBELLE_CYCLE="Formation"
+LIBELLE_CYCLE_AIDE="Formation qualifiante"
+LIBELLE_DEPARTEMENT="Domaines"
+LIBELLE_DEPARTEMENT_AIDE="Bâtiment, Mode, Numérique..."
+LIBELLE_FILIERE="Métiers"
+LIBELLE_FILIERE_AIDE="Métiers enseignés"
+LIBELLE_SPECIALITE="Parcours"
+LIBELLE_SPECIALITE_AIDE="Métier et durée"
+LIBELLE_UE="Modules"
+LIBELLE_UE_AIDE="Modules de formation"
+LIBELLE_ETUDIANTS="Apprenants"
