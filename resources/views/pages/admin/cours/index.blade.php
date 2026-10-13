@@ -430,12 +430,12 @@ new class extends Component {
     {{-- ─── Header ─── --}}
     <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-8">
         <div>
-            <h1 class="text-3xl font-bold text-gray-800">Gestion des Cours et Calendrier</h1>
-            <p class="text-gray-500">Configurez les cours, le calendrier et affectez un enseignant.</p>
+            <h1 class="text-3xl font-bold text-gray-800">Matières</h1>
+            <p class="text-gray-500">Le catalogue des matières : volume horaire, examen et enseignant.</p>
         </div>
         <button wire:click="functionShowCreateModal"
             class="mt-6 bg-indigo-600 text-white py-3 px-8 rounded-xl hover:bg-indigo-700 transition shadow-lg">
-            + Ajouter un cours
+            + Ajouter une matière
         </button>
     </div>
 
@@ -790,7 +790,7 @@ new class extends Component {
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6"
              x-data="coursSearch()" x-init="init()">
             <div class="flex items-center gap-3">
-                <h2 class="text-2xl font-semibold text-gray-800">Liste des Cours</h2>
+                <h2 class="text-2xl font-semibold text-gray-800">Liste des matières</h2>
                 <span class="bg-indigo-100 text-indigo-700 text-sm font-semibold px-3 py-0.5 rounded-full"
                       x-text="visibleCount">{{ count($cours) }}</span>
             </div>
@@ -895,21 +895,37 @@ new class extends Component {
         {{-- Tableau --}}
         @if (count($cours) > 0)
             <div class="overflow-x-auto">
-                <table class="w-full text-left border-separate border-spacing-y-2">
+                {{--
+                    Largeurs fixees : sans cela chaque colonne revenait a la ligne
+                    et la rangee montait a quatre lignes de haut. Les intitules
+                    longs sont coupes, le texte entier reste dans l'infobulle.
+                --}}
+                <table class="w-full min-w-[940px] table-fixed text-left">
+                    {{-- Tout en proportions : les huit colonnes tiennent ensemble
+                         quelle que soit la largeur, et aucune ne sort de l'ecran. --}}
+                    <colgroup>
+                        <col style="width:23%">
+                        <col style="width:17%">
+                        <col style="width:15%">
+                        <col style="width:8%">
+                        <col style="width:8%">
+                        <col style="width:10%">
+                        <col style="width:7%">
+                        <col style="width:12%">
+                    </colgroup>
                     <thead>
-                        <tr class="bg-gray-100">
-                            <th class="p-4 text-xs font-semibold text-gray-600 uppercase tracking-wide">Cours</th>
-                            <th class="p-4 text-xs font-semibold text-gray-600 uppercase tracking-wide">Filière</th>
-                            <th class="p-4 text-xs font-semibold text-gray-600 uppercase tracking-wide">Spécialité</th>
-                            <th class="p-4 text-xs font-semibold text-gray-600 uppercase tracking-wide">UE</th>
-                            <th class="p-4 text-xs font-semibold text-gray-600 uppercase tracking-wide">Examen</th>
-                            <th class="p-4 text-xs font-semibold text-gray-600 uppercase tracking-wide">Cr.</th>
-                            <th class="p-4 text-xs font-semibold text-gray-600 uppercase tracking-wide">H</th>
-                            <th class="p-4 text-xs font-semibold text-gray-600 uppercase tracking-wide">Enseignant</th>
-                            <th class="p-4 text-xs font-semibold text-gray-600 uppercase tracking-wide">Statut</th>
-                            <th class="p-4 text-xs font-semibold text-gray-600 uppercase tracking-wide">Actions</th>
+                        <tr>
+                            <th>Matière</th>
+                            <th>Rattachement</th>
+                            <th>Unité d’enseignement</th>
+                            <th class="!text-center">Examen</th>
+                            <th class="!text-center">Volume</th>
+                            <th>Enseignant</th>
+                            <th class="!text-center">Statut</th>
+                            <th class="!text-right">Actions</th>
                         </tr>
                     </thead>
+
                     <tbody>
                         @foreach ($cours as $cour)
                             <tr wire:key="cour-{{ $cour->id }}"
@@ -922,36 +938,62 @@ new class extends Component {
                                     $cour->ue->name ?? '',
                                     $cour->responsable->name ?? '',
                                     $cour->examen->titre ?? ''
-                                ])) }}"
-                                class="bg-gray-50 hover:bg-indigo-50 transition duration-150">
-                                <td class="p-4 font-medium text-gray-900">{{ $cour->name }}</td>
-                                <td class="p-4 text-gray-600 text-sm">{{ $cour->filiere->name ?? '—' }}</td>
-                                <td class="p-4 text-gray-600 text-sm">{{ $cour->specialite->name ?? '—' }}</td>
-                                <td class="p-4 text-gray-600 text-sm">{{ $cour->ue->name ?? '—' }}</td>
-                                <td class="p-4">
+                                ])) }}">
+                                <td>
+                                    <div class="font-medium text-gray-900 truncate" title="{{ $cour->name }}">{{ $cour->name }}</div>
+                                </td>
+
+                                {{-- Specialite et filiere tiennent dans une seule colonne : l'une dit l'autre. --}}
+                                <td>
+                                    <div class="truncate" title="{{ $cour->specialite->name ?? '—' }}">{{ $cour->specialite->name ?? '—' }}</div>
+                                    <div class="text-xs text-gray-400 truncate" title="{{ $cour->filiere->name ?? '' }}">{{ $cour->filiere->name ?? '—' }}</div>
+                                </td>
+
+                                <td>
+                                    <div class="truncate text-gray-600" title="{{ $cour->ue->name ?? '—' }}">{{ $cour->ue->name ?? '—' }}</div>
+                                </td>
+
+                                <td class="text-center">
                                     @if ($cour->examen)
-                                        <span class="inline-flex items-center gap-1 text-xs bg-purple-50 text-purple-700 px-2 py-1 rounded-full font-medium">
-                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                                            {{ $cour->examen->titre }}
+                                        <span class="inline-flex items-center max-w-full px-2 py-1 rounded-full bg-purple-50 text-purple-700 text-xs font-medium whitespace-nowrap overflow-hidden"
+                                              title="{{ $cour->examen->titre }}">
+                                            <span class="truncate">{{ $cour->examen->titre }}</span>
                                         </span>
                                     @else
-                                        <span class="text-gray-400">—</span>
+                                        <span class="text-gray-300">—</span>
                                     @endif
                                 </td>
-                                <td class="p-4 text-gray-600 text-sm">{{ $cour->credit ?? 0 }}</td>
-                                <td class="p-4 text-gray-600 text-sm">{{ $cour->hour_number ?? '—' }}</td>
-                                <td class="p-4 text-gray-600 text-sm">{{ $cour->responsable->name ?? '—' }}</td>
-                                <td class="p-4">
-                                    @if ($cour->status === 'pending')
-                                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">En attente</span>
-                                    @elseif ($cour->status === 'Success')
-                                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Actif</span>
+
+                                {{-- Credits et heures : deux chiffres, une colonne. --}}
+                                <td class="text-center whitespace-nowrap text-gray-600">
+                                    <span title="Crédits">{{ $cour->credit ?? 0 }} cr</span>
+                                    <span class="text-gray-300">·</span>
+                                    <span title="Heures">{{ $cour->hour_number ?? 0 }} h</span>
+                                </td>
+
+                                <td>
+                                    @if ($cour->responsable)
+                                        <div class="truncate text-gray-700" title="{{ trim($cour->responsable->name.' '.$cour->responsable->lastname) }}">
+                                            {{ trim($cour->responsable->name.' '.$cour->responsable->lastname) }}
+                                        </div>
                                     @else
-                                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">Terminé</span>
+                                        <span class="text-gray-300">—</span>
                                     @endif
                                 </td>
-                                <td class="p-4">
-                                    <div class="flex flex-wrap gap-1">
+
+                                <td class="text-center">
+                                    @if ($cour->status === 'pending')
+                                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800 whitespace-nowrap">En attente</span>
+                                    @elseif ($cour->status === 'Success')
+                                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800 whitespace-nowrap">Actif</span>
+                                    @else
+                                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800 whitespace-nowrap">Terminé</span>
+                                    @endif
+                                </td>
+
+                                {{-- Les actions tiennent sur une ligne : elles s'empilaient sur quatre. --}}
+                                <td>
+                                    <div class="flex items-center justify-end gap-0.5 flex-nowrap">
                                         <button wire:click="functionShowDetailsModal({{ $cour->id }})" class="bouton-icone text-sky-600 hover:bg-sky-50" title="Détails" aria-label="Détails"><x-icone-action nom="voir" /></button>
                                         @if ($cour->status === 'pending')
                                             <button wire:click="functionShowActivateModal({{ $cour->id }})" class="bouton-icone text-emerald-600 hover:bg-emerald-50" title="Activer" aria-label="Activer"><x-icone-action nom="activer" /></button>
@@ -972,7 +1014,7 @@ new class extends Component {
                 <svg class="w-12 h-12 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
-                <p class="text-gray-500 font-medium">Aucun cours ne correspond à vos critères.</p>
+                <p class="text-gray-500 font-medium">Aucune matière ne correspond à vos critères.</p>
                 @if ($this->activeFiltersCount > 0)
                     <button wire:click="resetFilters" class="mt-3 text-indigo-600 hover:underline text-sm">Réinitialiser les filtres</button>
                 @endif
