@@ -99,11 +99,20 @@ class PortalSignOnController extends Controller
         $user = null;
 
         /*
-         * On cherche d'abord par la reference que le portail a enregistree
-         * pour cette application : c'est la seule cle fiable, les matricules
-         * et les adresses ne coincidant pas d'une application a l'autre.
+         * L'identifiant du compte au portail passe avant tout : c'est lui que
+         * porte la liste d'effectif, donc le compte que nous avons peut-etre
+         * deja cree d'avance. Le retrouver evite d'en ouvrir un second.
          */
-        if (filled($a->reference ?? null)) {
+        if (filled($a->sub ?? null)) {
+            $user = User::where('portail_id', $a->sub)->first();
+        }
+
+        /*
+         * Ensuite la reference que le portail a enregistree pour cette
+         * application : les matricules et les adresses ne coincident pas
+         * d'une application a l'autre.
+         */
+        if (! $user && filled($a->reference ?? null)) {
             $user = User::where('matricule', $a->reference)->orWhere('email', $a->reference)->first();
         }
 
@@ -120,6 +129,9 @@ class PortalSignOnController extends Controller
         $email = $a->email ?? (($a->matricule ?? Str::random(8)).'@portail.local');
 
         $valeurs = [
+            // On retient l'identifiant du portail : la prochaine liste
+            // d'effectif et la prochaine connexion s'y rattacheront.
+            'portail_id' => filled($a->sub ?? null) ? (int) $a->sub : null,
             'name' => $a->prenom ?? 'Employé',
             'lastname' => $a->nom ?? null,
             'email' => $email,
@@ -145,6 +157,12 @@ class PortalSignOnController extends Controller
             // Le compte local garde son matricule et son adresse : ce sont ses
             // cles de rattachement, et d'autres tables peuvent s'y referer.
             unset($valeurs['matricule'], $valeurs['email']);
+
+            // Un identifiant de portail absent ne doit pas effacer celui
+            // que le compte porte deja.
+            if ($valeurs['portail_id'] === null) {
+                unset($valeurs['portail_id']);
+            }
 
             // Seul un compte en attente est valide par le portail ; un compte
             // supprime garde son statut.

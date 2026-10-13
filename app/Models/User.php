@@ -11,6 +11,9 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $fillable = [
+        // Identifiant du compte au portail : la cle de rapprochement stable.
+        'portail_id',
+        'dans_le_personnel',
         'name',
         'lastname',
         'contact',
@@ -129,6 +132,51 @@ class User extends Authenticatable
     public function paiements()
     {
         return $this->hasMany(PaiementSalaire::class, 'user_id');
+    }
+
+    /* ===================================================================
+     |  Le personnel de l'institut
+     * =================================================================== */
+
+    /**
+     * Le personnel de l'institut.
+     *
+     * Ce sont les agents inscrits au portail La Majestueuse pour l'institut :
+     * ceux qui l'ont choisi a leur inscription, et ceux a qui on l'a attribue.
+     * Les comptes se creent et se retirent la-bas, jamais ici.
+     *
+     * En sont exclus : les etudiants, les comptes supprimes, ceux que le
+     * portail ne compte pas dans ses effectifs (compte technique, compte de
+     * service), et les administrateurs — administrer n'est pas un emploi.
+     * Celui qui administre ET enseigne, lui, reste du personnel : on regarde
+     * tous ses roles, pas seulement le principal.
+     */
+    public function scopePersonnelDeLInstitut(\Illuminate\Database\Eloquent\Builder $query): \Illuminate\Database\Eloquent\Builder
+    {
+        return $query
+            ->whereNotNull('portail_id')
+            ->whereNotIn('role', ['student', 'etudiant'])
+            ->where(fn ($q) => $q->whereNull('status')->orWhere('status', '!=', 'failed'))
+            ->where('dans_le_personnel', true)
+            ->where(fn ($q) => $q->where('role', '!=', 'admin')->orWhereJsonLength('roles', '>', 1));
+    }
+
+    /**
+     * Les comptes d'avant le raccordement au portail. Ils restent en base —
+     * l'historique de la scolarite s'y rattache — mais ne font plus partie
+     * du personnel.
+     */
+    public function scopeAnciensComptesLocaux(\Illuminate\Database\Eloquent\Builder $query): \Illuminate\Database\Eloquent\Builder
+    {
+        return $query->whereNull('portail_id')
+            ->whereNotIn('role', ['student', 'etudiant'])
+            ->where(fn ($q) => $q->whereNull('status')->orWhere('status', '!=', 'failed'));
+    }
+
+    /** L'agent est-il deja rattache a un compte du portail ? */
+    public function rattacheAuPortail(): bool
+    {
+        return filled($this->portail_id);
     }
 
     /* ===================================================================

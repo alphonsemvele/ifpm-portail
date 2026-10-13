@@ -16,6 +16,16 @@ return Application::configure(basePath: dirname(__DIR__))
           $middleware->alias([
         'role' => Role::class,
     ]);
+
+        /*
+         * Le portail nous depose l'effectif par une requete serveur a serveur :
+         * il n'a pas de session chez nous, donc pas de jeton CSRF. Sa demande
+         * est authentifiee autrement, par une signature avec le secret partage
+         * (App\Support\Portail::verifier).
+         */
+        $middleware->validateCsrfTokens(except: [
+            'portail/effectif',
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

@@ -42,10 +42,11 @@ return [
             ['titre' => 'Relevés de notes', 'lien' => '/admin/releve', 'icone' => 'importer'],
         ]],
 
-        // --- Repris par le portail : module « Personnel & paie » ---------
-        ['groupe' => 'Ressources humaines & paie', 'liens' => [
-            ['titre' => 'Ouvrir dans le portail', 'lien' => $portailPersonnel, 'icone' => 'personnel', 'externe' => true],
-        ]],
+        /*
+         * Ressources humaines & paie : le module vit au portail La Majestueuse.
+         * Le raccourci « Ouvrir dans le portail » a ete retire du menu le
+         * 13/10/2026 : on y va par le portail, pas par l'institut.
+         */
 
         // ['groupe' => 'Ressources humaines & paie', 'liens' => [
         //     ['titre' => 'Payer les salaires', 'lien' => '/admin/paie', 'icone' => 'argent'],

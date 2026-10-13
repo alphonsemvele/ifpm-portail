@@ -95,9 +95,10 @@ new class extends Component {
             $this->cours = $query->orderBy('name')->get();
 
             $this->filieres    = Filiere::where('status', 'Success')->orderBy('name')->get();
-            $this->enseignants = User::whereNotIn('role', ['student', 'etudiant', 'admin'])
-                ->where('status', 'Success')
-                ->orderBy('name')
+            // Le personnel vient du portail : la liste d'ici ne doit pas
+            // ressortir les anciens comptes locaux.
+            $this->enseignants = User::personnelDeLInstitut()
+                ->orderBy('name')->orderBy('lastname')
                 ->get();
 
         } catch (\Exception $e) {

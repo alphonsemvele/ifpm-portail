@@ -49,10 +49,10 @@ new class extends Component {
             ->orderBy('name')
             ->get(['id', 'name']);
 
-        $this->responsables = User::whereNotIn('role', ['student', 'etudiant', 'admin'])
-            ->where('status', 'Success')
-            ->orderBy('name')
-            ->get(['id', 'name', 'email']);
+        // Le personnel vient du portail (voir User::personnelDeLInstitut).
+        $this->responsables = User::personnelDeLInstitut()
+            ->orderBy('name')->orderBy('lastname')
+            ->get(['id', 'name', 'lastname', 'email']);
     }
 
     public function functionShowCreateModal()
